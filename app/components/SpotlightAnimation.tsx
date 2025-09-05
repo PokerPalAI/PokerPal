@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -18,9 +18,19 @@ const splitTextIntoWords = (element: HTMLElement) => {
 
 export default function SpotlightAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +40,49 @@ export default function SpotlightAnimation() {
       lenis.raf(time * 1000);
     });
     gsap.ticker.lagSmoothing(0);
+
+    // Hero loading animation
+    const initHeroAnimation = () => {
+      const heroNav = document.querySelector(".hero-nav");
+      const heroLogo = document.querySelector(".hero-logo");
+      const heroHeading = document.querySelector(".intro h1");
+      const heroSubtext = document.querySelector(".hero-subtext");
+      const heroCta = document.querySelector(".hero-cta");
+
+      // Set initial states
+      gsap.set([heroNav, heroLogo, heroHeading, heroSubtext, heroCta], {
+        opacity: 0,
+        y: 30,
+      });
+
+      // Create timeline for smooth sequential animations
+      const tl = gsap.timeline({ delay: 0.3 });
+
+      tl.to(heroNav, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      })
+      .to(heroLogo, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      }, "-=0.4")
+      .to(heroHeading, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      }, "-=0.3")
+      .to([heroSubtext, heroCta], {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      }, "-=0.4");
+    };
 
     const initSpotlightAnimations = () => {
       const images = document.querySelectorAll(".img");
@@ -194,10 +247,26 @@ export default function SpotlightAnimation() {
               gsap.set(outroHeaderWords, { opacity: 1 });
             }
           }
+
+          // Animate background image desaturation and darkening when outro text appears
+          if (progress >= 0.8) {
+            const desaturationProgress = Math.min(1, (progress - 0.8) / 0.15);
+            const saturation = 100 - (desaturationProgress * 100); // 100% to 0%
+            const brightness = 100 - (desaturationProgress * 50); // 100% to 50%
+            
+            gsap.set(coverImg, {
+              filter: `saturate(${saturation}%) brightness(${brightness}%)`,
+            });
+          } else {
+            gsap.set(coverImg, {
+              filter: "saturate(100%) brightness(100%)",
+            });
+          }
         },
       });
     };
 
+    initHeroAnimation();
     initSpotlightAnimations();
     window.addEventListener("resize", initSpotlightAnimations);
 
@@ -205,6 +274,7 @@ export default function SpotlightAnimation() {
       lenis.destroy();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       window.removeEventListener("resize", initSpotlightAnimations);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -212,8 +282,25 @@ export default function SpotlightAnimation() {
     <div ref={containerRef}>
       <section className="intro">
         <nav className="hero-nav">
+          {/* Mobile Hamburger Menu - Left Side */}
+          {isMobile && (
+            <button 
+              className="hamburger-menu"
+              onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Open menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          )}
+          
           <div className="nav-logo">
-            <span>Poker Pal</span>
+            {isMobile ? (
+              <Image src="/hero-logo-text.svg" alt="Poker Pal" width={100} height={24} />
+            ) : (
+              <Image src="/hero-logo.svg" alt="Poker Pal" width={120} height={40} />
+            )}
           </div>
           <div className="nav-links">
             <a href="#team-perks">Team Perks</a>
@@ -221,7 +308,34 @@ export default function SpotlightAnimation() {
           </div>
           <button className="nav-cta">APPLY NOW</button>
         </nav>
-        
+
+        {/* Mobile Menu Overlay */}
+        {isMobile && isMobileMenuOpen && (
+          <div className="mobile-menu-overlay" onClick={() => setIsMobileMenuOpen(false)}>
+            <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
+              <div className="mobile-menu-header">
+                <button 
+                  className="close-menu"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="mobile-menu-content">
+                <div className="mobile-menu-logo">
+                  <Image src="/pokerpal-logomark.svg" alt="Poker Pal" width={32} height={32} />
+                </div>
+                <a href="#team-perks" onClick={() => setIsMobileMenuOpen(false)}>Team Perks</a>
+                <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+                <button className="mobile-apply-btn" onClick={() => setIsMobileMenuOpen(false)}>
+                  APPLY NOW
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="hero-content">
           <div className="hero-logo">
             <Image src="/pokerpal-logomark.svg" alt="Poker Pal Logo" width={80} height={79} />
@@ -247,12 +361,71 @@ export default function SpotlightAnimation() {
         <div className="spotlight-intro-header">
           <h1>THE GAME HAS CHANGED. WILL YOU?</h1>
         </div>
-        <div className="spotlight-outro-header">
+        <div className="spotlight-outro-header ">
           <h1>GREATNESS DOESN&apos;T WAIT. NEITHER SHOULD YOU.</h1>
         </div>
       </section>
       <section className="outro">
-        <h1>STEP INTO THE FUTURE OF YOUR GAME</h1>
+        <div className="outro-content ">
+          <h1>BECOME<br/>TOMORROW&apos;S<br/>CHAMPION</h1>
+          
+          <div className="footer-hero">
+            <div className="footer-background">
+              <Image src="/cubes-footer.png" alt="" fill sizes="100vw" />
+            </div>
+            <div className="footer-logo">
+              <Image src="/pokerpal-logomark.svg" alt="Poker Pal Logo" width={120} height={118} />
+              <p>Change the game</p>
+            </div>
+          </div>
+
+          <div className="subscription-section">
+            <div className="subscription-card">
+              <div className="subscription-heading">
+                <span>Subscribe for </span>
+                <span className="bold">weekly</span>
+                <span> insights on the best poker game strategies</span>
+              </div>
+              <div className="email-input-wrapper">
+                <input 
+                  type="email" 
+                  placeholder="What's your email?" 
+                  className="styled-email-input"
+                />
+                <button className="styled-subscribe-btn">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <nav className="footer-nav">
+            <a href="#team-perks">Team Perks</a>
+            <a href="#about-us">About Us</a>
+            <a href="#apply-now">Apply now</a>
+          </nav>
+
+          <div className="social-links">
+            <a href="#" aria-label="Twitter">
+              <Image src="/Twitter.svg" alt="Twitter" width={24} height={24} />
+            </a>
+            <a href="#" aria-label="Telegram">
+              <Image src="/Telegram.svg" alt="Telegram" width={24} height={24} />
+            </a>
+            <a href="#" aria-label="YouTube">
+              <Image src="/YouTube.svg" alt="YouTube" width={24} height={24} />
+            </a>
+            <a href="#" aria-label="Instagram">
+              <Image src="/Instagram.svg" alt="Instagram" width={24} height={24} />
+            </a>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>PokerPal.ai</span>
+        </div>
       </section>
     </div>
   );
