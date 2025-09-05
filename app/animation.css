@@ -529,6 +529,12 @@ section {
 
 .spotlight-cover-img {
     will-change: transform;
+    overflow: hidden;
+}
+
+.spotlight-cover-img img {
+    object-position: 30% center;
+    transform: translateX(-15%);
 }
 
 .spotlight-intro-header,
@@ -629,8 +635,9 @@ section {
         line-height: 19px;
     }
 
-    .spotlight-cover-img {
-        transform: translateX(-100px);
+    .spotlight-cover-img img {
+        object-position: 20% center;
+        transform: translateX(-25%) scale(1.2);
     }
 }
 
