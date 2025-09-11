@@ -20,6 +20,88 @@ export default function SpotlightAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Animation for Apply button clicks
+  const handleApplyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+
+    const heroLogo = document.querySelector(".hero-logo img") as HTMLElement;
+    const heroContent = document.querySelector(".hero-content") as HTMLElement;
+    const heroNav = document.querySelector(".hero-nav") as HTMLElement;
+    const introSection = document.querySelector(".intro") as HTMLElement;
+    
+    if (!heroLogo || !heroContent) return;
+
+    // Create a cloned logo for the animation
+    const logoClone = heroLogo.cloneNode(true) as HTMLElement;
+    logoClone.style.position = "fixed";
+    logoClone.style.zIndex = "9999";
+    logoClone.style.pointerEvents = "none";
+    
+    // Get the original logo position
+    const logoRect = heroLogo.getBoundingClientRect();
+    logoClone.style.left = logoRect.left + "px";
+    logoClone.style.top = logoRect.top + "px";
+    logoClone.style.width = logoRect.width + "px";
+    logoClone.style.height = logoRect.height + "px";
+    
+    document.body.appendChild(logoClone);
+
+    // Create transition overlay
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.backgroundColor = "white";
+    overlay.style.zIndex = "9998";
+    overlay.style.opacity = "0";
+    overlay.style.pointerEvents = "none";
+    document.body.appendChild(overlay);
+
+    // Animation timeline
+    const tl = gsap.timeline({
+      onComplete: () => {
+        // Navigate to intake page
+        window.location.href = "/intake";
+      }
+    });
+
+    // Fade out other elements
+    tl.to([heroContent, heroNav], {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.inOut"
+    })
+    // Scale and center the logo
+    .to(logoClone, {
+      x: (window.innerWidth / 2) - (logoRect.left + logoRect.width / 2),
+      y: (window.innerHeight / 2) - (logoRect.top + logoRect.height / 2),
+      scale: 3,
+      rotation: 360,
+      duration: 1.2,
+      ease: "power2.inOut"
+    }, "-=0.3")
+    // Fade in overlay
+    .to(overlay, {
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.inOut"
+    }, "-=0.6")
+    // Final logo animation
+    .to(logoClone, {
+      scale: 0.5,
+      rotation: 720,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.inOut"
+    }, "-=0.2");
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -306,7 +388,7 @@ export default function SpotlightAnimation() {
             <a href="#team-perks">Team Perks</a>
             <a href="#about-us">About Us</a>
           </div>
-          <button className="nav-cta">APPLY NOW</button>
+          <a href="/intake" className="nav-cta" onClick={handleApplyClick}>APPLY NOW</a>
         </nav>
 
         {/* Mobile Menu Overlay */}
@@ -328,9 +410,9 @@ export default function SpotlightAnimation() {
                 </div>
                 <a href="#team-perks" onClick={() => setIsMobileMenuOpen(false)}>Team Perks</a>
                 <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
-                <button className="mobile-apply-btn" onClick={() => setIsMobileMenuOpen(false)}>
+                <a href="/intake" className="mobile-apply-btn" onClick={(e) => { setIsMobileMenuOpen(false); handleApplyClick(e); }}>
                   APPLY NOW
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -344,7 +426,7 @@ export default function SpotlightAnimation() {
           <p className="hero-subtext">
             Join the world&apos;s fire community built for poker athletes. Where preparation, mindset, and performance matter as much as the cards.
           </p>
-          <button className="hero-cta">BECOME A FOUNDING MEMBER</button>
+          <a href="/intake" className="hero-cta" onClick={handleApplyClick}>BECOME A FOUNDING MEMBER</a>
         </div>
       </section>
       <section className="spotlight">
@@ -404,7 +486,7 @@ export default function SpotlightAnimation() {
           <nav className="footer-nav">
             <a href="#team-perks">Team Perks</a>
             <a href="#about-us">About Us</a>
-            <a href="#apply-now">Apply now</a>
+            <a href="/intake" onClick={handleApplyClick}>Apply now</a>
           </nav>
 
           <div className="social-links">

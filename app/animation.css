@@ -286,7 +286,16 @@ section {
     overflow: hidden;
 }
 
-.intro,
+.intro {
+    display: flex;
+    flex-direction: column;
+    background-image: url('/herobg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--dark);
+}
+
 .outro {
     display: flex;
     flex-direction: column;
