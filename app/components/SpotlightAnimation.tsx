@@ -384,10 +384,11 @@ export default function SpotlightAnimation() {
               <Image src="/hero-logo.svg" alt="Poker Pal" width={120} height={40} />
             )}
           </div>
-          <div className="nav-links">
-            <a href="#team-perks">Team Perks</a>
-            <a href="#about-us">About Us</a>
-          </div>
+                  <div className="nav-links">
+                    {/* <a href="/team-perks">Team Perks</a> */}
+                    <a href="/challenge">Challenge</a>
+                    <a href="#about-us">About Us</a>
+                  </div>
           <a href="/intake" className="nav-cta" onClick={handleApplyClick}>APPLY NOW</a>
         </nav>
 
@@ -408,8 +409,9 @@ export default function SpotlightAnimation() {
                 <div className="mobile-menu-logo">
                   <Image src="/pokerpal-logomark.svg" alt="Poker Pal" width={32} height={32} />
                 </div>
-                <a href="#team-perks" onClick={() => setIsMobileMenuOpen(false)}>Team Perks</a>
-                <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+                        {/* <a href="/team-perks" onClick={() => setIsMobileMenuOpen(false)}>Team Perks</a> */}
+                        <a href="/challenge" onClick={() => setIsMobileMenuOpen(false)}>Challenge</a>
+                        <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
                 <a href="/intake" className="mobile-apply-btn" onClick={(e) => { setIsMobileMenuOpen(false); handleApplyClick(e); }}>
                   APPLY NOW
                 </a>
@@ -484,7 +486,8 @@ export default function SpotlightAnimation() {
           </div>
 
           <nav className="footer-nav">
-            <a href="#team-perks">Team Perks</a>
+            {/* <a href="/team-perks">Team Perks</a> */}
+            <a href="/challenge">Challenge</a>
             <a href="#about-us">About Us</a>
             <a href="/intake" onClick={handleApplyClick}>Apply now</a>
           </nav>

@@ -354,7 +354,7 @@ export default function IntakeForm() {
         window.location.href = '/?application=submitted';
       } else {
         const errorData = await response.json();
-        setError(errorData.message || 'Something went wrong. Please try again.');
+        setError(errorData.error || errorData.message || 'Something went wrong. Please try again.');
       }
     } catch {
       setError('Network error. Please check your connection and try again.');
