@@ -1192,8 +1192,12 @@ onInput={capitalizeFirstLetterInput}
               <h2 className="text-[24px] md:text-[32px] lg:text-[36px] mb-8 font-normal question text-center">
                 Thank you for sharing your poker journey with us!
               </h2>
-              <p className="text-xl text-gray-500 mb-8 md:mb-10 w-[90%] sm:w-[70%] md:w-[90%] max-w-3xl mx-auto">
+              <p className="text-xl text-gray-500 mb-6 md:mb-8 w-[90%] sm:w-[70%] md:w-[90%] max-w-3xl mx-auto">
                 We&apos;re excited to learn more about dedicated poker athletes like you. Your application will be reviewed, and we&apos;ll be in touch soon about joining the PokerPal founding team.
+              </p>
+              
+              <p className="text-sm text-gray-400 mb-6 md:mb-8 w-[90%] sm:w-[70%] md:w-[90%] max-w-2xl mx-auto text-center">
+                📧 By submitting, you&apos;ll also be added to our newsletter to stay updated on PokerPal&apos;s development and founding member opportunities.
               </p>
               
               <div className="w-full flex justify-center mt-4">

@@ -99,11 +99,24 @@ export async function POST(request: NextRequest) {
     // Create the Notion page
     const result = await createNotionEntry(payload);
 
+    // Add to Beehiiv newsletter (if enabled)
+    let beehiivResult = null;
+    if (process.env.BEEHIIV_AUTO_SUBSCRIBE !== 'false') {
+      try {
+        beehiivResult = await addToBeehiivNewsletter(payload);
+      } catch (beehiivError) {
+        // Log the error but don't fail the entire submission
+        console.error('Beehiiv subscription failed:', beehiivError);
+        // Continue with success since Notion save worked
+      }
+    }
+
     return NextResponse.json(
       { 
         success: true, 
         message: 'Application submitted successfully',
-        notionPageId: result.id 
+        notionPageId: result.id,
+        newsletterSubscribed: !!beehiivResult
       },
       { status: 200 }
     );
@@ -327,4 +340,66 @@ function createFormattedPageContent(payload: NotionPayload) {
   );
 
   return content;
+}
+
+async function addToBeehiivNewsletter(payload: NotionPayload) {
+  const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
+  const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID;
+
+  if (!BEEHIIV_API_KEY || !BEEHIIV_PUBLICATION_ID) {
+    console.warn('Beehiiv credentials not configured, skipping newsletter subscription');
+    return null;
+  }
+
+  try {
+    const subscriberData = {
+      email: payload.email,
+      reactivate_existing: true,
+      send_welcome_email: true,
+      utm_source: "poker_pal_intake_form",
+      utm_medium: "founding_member_application",
+      referring_site: "intake.pokerpal.com",
+      custom_fields: [
+        {
+          name: "application_date",
+          value: new Date(payload.submittedAt).toLocaleDateString()
+        },
+        {
+          name: "applicant_name", 
+          value: payload.name
+        },
+        {
+          name: "application_status",
+          value: "pending_review"
+        }
+      ]
+    };
+
+    const response = await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(subscriberData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Beehiiv API error: ${response.status} - ${JSON.stringify(errorData)}`);
+    }
+
+    const result = await response.json();
+    console.log('Successfully added subscriber to Beehiiv:', payload.email);
+    
+    return {
+      success: true,
+      subscriberId: result.data?.id,
+      email: payload.email,
+    };
+
+  } catch (error) {
+    console.error('Failed to add subscriber to Beehiiv:', error);
+    throw error;
+  }
 }
