@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <ChallengeBanner />
-      <div style={{ paddingTop: '48px' }}>
+      <div>
         <SpotlightAnimation />
       </div>
     </>

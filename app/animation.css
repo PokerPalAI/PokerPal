@@ -41,6 +41,14 @@ h1 {
     z-index: 10;
 }
 
+/* Challenge page navigation override */
+.hero-nav.challenge-nav-override {
+    top: 0;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
 .nav-logo {
     display: flex;
     align-items: center;
@@ -583,12 +591,18 @@ section {
 @media (max-width: 768px) {
     .hero-nav {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         padding: 1rem 24px;
         align-items: center;
     }
 
-    .nav-logo {
+    /* For challenge page - show logo on mobile */
+    .hero-nav.challenge-nav-override .nav-logo {
+        display: flex;
+    }
+
+    /* For main page - hide logo on mobile */
+    .hero-nav:not(.challenge-nav-override) .nav-logo {
         display: none;
     }
 

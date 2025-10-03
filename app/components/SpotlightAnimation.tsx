@@ -32,8 +32,7 @@ export default function SpotlightAnimation() {
     const heroLogo = document.querySelector(".hero-logo img") as HTMLElement;
     const heroContent = document.querySelector(".hero-content") as HTMLElement;
     const heroNav = document.querySelector(".hero-nav") as HTMLElement;
-    const introSection = document.querySelector(".intro") as HTMLElement;
-    
+
     if (!heroLogo || !heroContent) return;
 
     // Create a cloned logo for the animation
