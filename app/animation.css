@@ -246,8 +246,8 @@ h1 {
     /* Dynamic viewport height for mobile browsers */
     text-align: center;
     gap: 12px;
-    padding: max(10vh, 24px) 0 32px 0;
-    /* Minimum 24px from top, 32px from bottom */
+    padding: 15vh 0 32px 0;
+    /* 20% from top, 32px from bottom for desktop */
     min-height: calc(100vh - 10vh);
     min-height: calc(100dvh - 10vh);
     /* Dynamic viewport height for mobile browsers */
@@ -304,7 +304,8 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     letter-spacing: 0.5px;
-    margin-top: auto;
+    margin-top: 0px;
+    /* Exactly 24px below subheader for desktop */
     margin-bottom: max(0px, 32px);
 }
 
@@ -624,7 +625,11 @@ section {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding: 1rem 24px;
+        padding: 32px 24px 1rem 24px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
     }
 
     /* For challenge page - show logo on mobile */
