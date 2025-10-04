@@ -28,7 +28,7 @@ export default function TeamPerks() {
           </div>
           <h1>Founding Member Rewards</h1>
           <p className="hero-subtitle">
-            Becoming a PokerPal Founding Team Member means more than early access — it's lifetime recognition, 
+            Becoming a PokerPal Founding Team Member means more than early access — it&apos;s lifetime recognition, 
             exclusive perks, and entry into our sponsored Last Longer Contests.
           </p>
           <div className="limited-spots">
@@ -47,7 +47,7 @@ export default function TeamPerks() {
             </div>
             <h3>Exclusive Recognition</h3>
             <ul>
-              <li>Founding Badge & Title on your in-app profile (e.g., "OG #001")</li>
+              <li>Founding Badge & Title on your in-app profile (e.g., &quot;OG #001&quot;)</li>
               <li>Lifetime Founding Member Tier with permanent perks</li>
               <li>Your name featured on the Founders Wall inside the app and website</li>
             </ul>

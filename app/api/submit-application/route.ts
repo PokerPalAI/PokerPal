@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Client } from '@notionhq/client';
-import { v4 as uuidv4 } from 'uuid';
+import type { BlockObjectRequest } from '@notionhq/client/build/src/api-endpoints';
 
 // Initialize Notion client
 const notion = new Client({
@@ -136,9 +136,6 @@ export async function POST(request: NextRequest) {
 }
 
 async function createNotionEntry(payload: NotionPayload) {
-  // Generate a unique idempotency key for this submission
-  const idempotencyKey = uuidv4();
-
   try {
     // Create formatted page content for easy reading
     const pageContent = createFormattedPageContent(payload);
@@ -177,9 +174,6 @@ async function createNotionEntry(payload: NotionPayload) {
         },
       },
       children: pageContent,
-    }, {
-      // Add idempotency key to prevent duplicate submissions on retries
-      'Notion-Idempotency-Key': idempotencyKey,
     });
 
     return response;
@@ -189,8 +183,8 @@ async function createNotionEntry(payload: NotionPayload) {
   }
 }
 
-function createFormattedPageContent(payload: NotionPayload) {
-  const content: any[] = [
+function createFormattedPageContent(payload: NotionPayload): BlockObjectRequest[] {
+  const content: BlockObjectRequest[] = [
     // Header with applicant info
     {
       object: 'block',

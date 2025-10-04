@@ -15,7 +15,7 @@ export async function testNotionConnection() {
     });
 
     console.log('✅ Notion connection successful!');
-    console.log(`Database name: ${database.title[0]?.plain_text || 'Unknown'}`);
+    console.log(`Database name: ${'title' in database ? database.title[0]?.plain_text || 'Unknown' : 'Unknown'}`);
     console.log(`Database ID: ${database.id}`);
     
     return { success: true, database };
