@@ -203,6 +203,7 @@ export default function SpotlightAnimation() {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
       const isMobile = window.innerWidth < 1000;
+      const isSmallMobile = window.innerWidth < 500;
       const scatterMultiplier = isMobile ? 2.5 : 0.5;
 
       const startPositions = Array.from(images).map(() => ({
@@ -230,10 +231,18 @@ export default function SpotlightAnimation() {
         y: 0,
       });
 
+      // Calculate scroll distance based on screen size
+      let scrollDistance = window.innerHeight * 10; // Default for large screens
+      if (isSmallMobile) {
+        scrollDistance = window.innerHeight * 3; // Much shorter for small mobile
+      } else if (isMobile) {
+        scrollDistance = window.innerHeight * 6; // Shorter for larger mobile
+      }
+
       ScrollTrigger.create({
         trigger: ".spotlight",
         start: "top top",
-        end: `+=${window.innerHeight * 10}px`,
+        end: `+=${scrollDistance}px`,
         pin: true,
         pinSpacing: true,
         scrub: 1,
@@ -363,7 +372,21 @@ export default function SpotlightAnimation() {
     <div ref={containerRef}>
       <section className="intro">
         <nav className="hero-nav">
-          {/* Mobile Hamburger Menu - Left Side */}
+          {!isMobile && (
+            <>
+              <div className="nav-logo">
+                <Image src="/hero-logo.svg" alt="Poker Pal" width={120} height={40} />
+              </div>
+              <div className="nav-links">
+                {/* <a href="/team-perks">Team Perks</a> */}
+                <a href="/challenge">Challenge</a>
+                <a href="#about-us">About Us</a>
+              </div>
+              <a href="/intake" className="nav-cta" onClick={handleApplyClick}>APPLY NOW</a>
+            </>
+          )}
+
+          {/* Mobile Hamburger Menu - Centered */}
           {isMobile && (
             <button 
               className="hamburger-menu"
@@ -375,20 +398,6 @@ export default function SpotlightAnimation() {
               <span></span>
             </button>
           )}
-          
-          <div className="nav-logo">
-            {isMobile ? (
-              <Image src="/hero-logo-text.svg" alt="Poker Pal" width={100} height={24} />
-            ) : (
-              <Image src="/hero-logo.svg" alt="Poker Pal" width={120} height={40} />
-            )}
-          </div>
-                  <div className="nav-links">
-                    {/* <a href="/team-perks">Team Perks</a> */}
-                    <a href="/challenge">Challenge</a>
-                    <a href="#about-us">About Us</a>
-                  </div>
-          <a href="/intake" className="nav-cta" onClick={handleApplyClick}>APPLY NOW</a>
         </nav>
 
         {/* Mobile Menu Overlay */}

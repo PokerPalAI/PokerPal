@@ -233,7 +233,8 @@ h1 {
     height: 100vh;
     text-align: center;
     gap: 12px;
-    padding: 0;
+    padding: 10vh 0 0 0;
+    min-height: calc(100vh - 10vh);
 }
 
 .hero-logo {
@@ -521,6 +522,9 @@ section {
 .spotlight {
     background-color: var(--dark);
     color: var(--light);
+    width: 100vw;
+    left: 50%;
+    margin-left: -50vw;
 }
 
 .spotlight-images,
@@ -591,9 +595,9 @@ section {
 @media (max-width: 768px) {
     .hero-nav {
         display: flex;
-        justify-content: space-between;
-        padding: 1rem 24px;
+        justify-content: flex-end;
         align-items: center;
+        padding: 1rem 24px;
     }
 
     /* For challenge page - show logo on mobile */
@@ -651,16 +655,24 @@ section {
 
     .hero-content {
         gap: clamp(12px, 4vw, 16px);
-        padding: 0 24px;
+        padding: 10vh 24px 0 24px;
+        min-height: calc(100vh - 10vh);
     }
 
     .subscription-heading {
         line-height: 19px;
     }
 
+    .spotlight-cover-img {
+        width: 100vw;
+        left: 50%;
+        margin-left: -50vw;
+    }
+
     .spotlight-cover-img img {
         object-position: 20% center;
         transform: translateX(-25%) scale(1.2);
+        width: 100%;
     }
 }
 
@@ -671,6 +683,11 @@ section {
 
     .nav-links {
         gap: 1.5rem;
+    }
+
+    .hero-content {
+        padding: 10vh 2rem 0 2rem;
+        min-height: calc(100vh - 10vh);
     }
 
     .intro h1 {
@@ -693,6 +710,12 @@ section {
         width: 100%;
         padding: 0 1rem;
         margin: 20.8vh auto 30px;
+    }
+
+    .spotlight-cover-img {
+        width: 100vw;
+        left: 50%;
+        margin-left: -50vw;
     }
 
     .spotlight-intro-header,
@@ -738,6 +761,12 @@ section {
     .social-links {
         gap: 24px;
         margin-bottom: 48px;
+    }
+
+    .spotlight-cover-img {
+        width: 100vw;
+        left: 50%;
+        margin-left: -50vw;
     }
 
     .spotlight-intro-header,

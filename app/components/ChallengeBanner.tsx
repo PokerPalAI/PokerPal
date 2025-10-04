@@ -25,6 +25,8 @@ export default function ChallengeBanner() {
         heroNav.style.top = '0px';
         heroNav.style.transition = 'top 0.3s ease';
       }
+      
+      // Ensure hero content maintains its spacing - the CSS will handle the 10vh padding automatically
     }, 300);
   };
 
@@ -41,7 +43,8 @@ export default function ChallengeBanner() {
           href="/challenge" 
           className="text-white no-underline font-semibold text-base text-center transition-all duration-300 ease-in-out hover:opacity-90 hover:scale-105 md:text-sm sm:text-xs sm:leading-tight"
         >
-          🔥 Enter our Free Last Longer Challenge happening Dec 15-22, 2025 🔥
+          <span className="hidden md:inline">🔥 Enter our Free Last Longer Challenge happening Dec 15-22, 2025 🔥</span>
+          <span className="md:hidden">🔥 Join the Last Longer Challenge 🔥</span>
         </Link>
         <button 
           className="absolute right-4 bg-transparent border-none text-white text-lg cursor-pointer w-8 h-8 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out hover:bg-white/20 md:right-2 md:w-7 md:h-7 md:text-base sm:text-sm"
