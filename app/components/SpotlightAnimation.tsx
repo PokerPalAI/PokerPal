@@ -231,12 +231,13 @@ export default function SpotlightAnimation() {
         y: 0,
       });
 
-      // Calculate scroll distance based on screen size
-      let scrollDistance = window.innerHeight * 10; // Default for large screens
+      // Calculate scroll distance based on screen size using dynamic viewport height
+      const viewportHeight = window.innerHeight; // This will be the actual visible height in modern browsers
+      let scrollDistance = viewportHeight * 10; // Default for large screens
       if (isSmallMobile) {
-        scrollDistance = window.innerHeight * 3; // Much shorter for small mobile
+        scrollDistance = viewportHeight * 3; // Much shorter for small mobile
       } else if (isMobile) {
-        scrollDistance = window.innerHeight * 6; // Shorter for larger mobile
+        scrollDistance = viewportHeight * 6; // Shorter for larger mobile
       }
 
       ScrollTrigger.create({

@@ -242,10 +242,15 @@ h1 {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile browsers */
     text-align: center;
     gap: 12px;
-    padding: 10vh 0 0 0;
+    padding: max(10vh, 24px) 0 32px 0;
+    /* Minimum 24px from top, 32px from bottom */
     min-height: calc(100vh - 10vh);
+    min-height: calc(100dvh - 10vh);
+    /* Dynamic viewport height for mobile browsers */
 }
 
 .hero-logo {
@@ -281,6 +286,13 @@ h1 {
     margin: 1rem 0 2rem 0;
 }
 
+/* Remove margin from subheader on short screens */
+@media (max-height: 700px) {
+    .hero-subtext {
+        margin: 0.5rem 0 1rem 0;
+    }
+}
+
 .hero-cta {
     background-color: #121212;
     color: white;
@@ -292,6 +304,8 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     letter-spacing: 0.5px;
+    margin-top: auto;
+    margin-bottom: max(0px, 32px);
 }
 
 .hero-cta:hover {
@@ -301,7 +315,9 @@ h1 {
 section {
     position: relative;
     width: 100vw;
-    height: 100svh;
+    height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile browsers */
     padding: 0;
     overflow: hidden;
 }
@@ -650,6 +666,13 @@ section {
         line-height: 1.4;
     }
 
+    /* Reduce margins further on short mobile screens */
+    @media (max-height: 700px) {
+        .hero-subtext {
+            margin: 0.25rem 0 0.5rem 0;
+        }
+    }
+
     .hero-logo {
         width: clamp(60px, 18vw, 90px);
         height: clamp(60px, 18vw, 90px);
@@ -659,6 +682,7 @@ section {
         padding: 1rem 2rem;
         font-size: clamp(15px, 3.8vw, 17px);
         margin: 0 24px;
+        margin-bottom: 32px !important;
         white-space: nowrap;
         max-width: calc(100vw - 48px);
         text-align: center;
@@ -666,8 +690,14 @@ section {
 
     .hero-content {
         gap: clamp(12px, 4vw, 16px);
-        padding: 10vh 24px 0 24px;
+        padding: max(10vh, 24px) 24px 32px 24px;
+        /* Minimum 24px from top, 32px from bottom */
         min-height: calc(100vh - 10vh);
+        min-height: calc(100dvh - 10vh);
+        /* Dynamic viewport height for mobile browsers */
+        height: 100vh;
+        height: 100dvh;
+        /* Dynamic viewport height for mobile browsers */
     }
 
     .subscription-heading {
@@ -697,8 +727,14 @@ section {
     }
 
     .hero-content {
-        padding: 10vh 2rem 0 2rem;
+        padding: max(10vh, 24px) 2rem 32px 2rem;
+        /* Minimum 24px from top, 32px from bottom */
         min-height: calc(100vh - 10vh);
+        min-height: calc(100dvh - 10vh);
+        /* Dynamic viewport height for mobile browsers */
+        height: 100vh;
+        height: 100dvh;
+        /* Dynamic viewport height for mobile browsers */
     }
 
     .intro h1 {
@@ -710,6 +746,13 @@ section {
     .hero-subtext {
         padding: 0 2rem;
         font-size: clamp(17px, 2.5vw, 18px);
+    }
+
+    /* Reduce margins on short tablet screens */
+    @media (max-height: 700px) {
+        .hero-subtext {
+            margin: 0.25rem 0 0.5rem 0;
+        }
     }
 
     .hero-logo {
