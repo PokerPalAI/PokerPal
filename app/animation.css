@@ -222,6 +222,17 @@ h1 {
 
 .mobile-apply-btn:hover {
     background-color: #333;
+    color: white !important;
+}
+
+.mobile-menu-content .mobile-apply-btn {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mobile-menu-content .mobile-apply-btn:hover {
+    color: white !important;
 }
 
 /* Hero Content */
