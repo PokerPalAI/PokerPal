@@ -6,13 +6,14 @@ import { useState, useEffect } from 'react';
 export default function ChallengeBanner() {
   const [isVisible, setIsVisible] = useState(true);
   const [isClosing, setIsClosing] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Start with true to prevent flicker
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
     
+    // Check mobile status immediately on mount to prevent flicker
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -41,7 +42,10 @@ export default function ChallengeBanner() {
     }, 300);
   };
 
-  if (!isVisible || isMobile) return null;
+  // Don't render anything on mobile to prevent flicker
+  if (isMobile) return null;
+  
+  if (!isVisible) return null;
 
   return (
     <div 
