@@ -105,6 +105,9 @@ export default function SpotlightAnimation() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    // Always start at the top of the page on load/refresh
+    window.scrollTo(0, 0);
+
     // Check if mobile on mount and resize
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -185,7 +188,8 @@ export default function SpotlightAnimation() {
 
       if (introHeader) {
         introHeaderWords = splitTextIntoWords(introHeader);
-        gsap.set(introHeaderWords, { opacity: 1 });
+        gsap.set(introHeaderWords, { opacity: 0 });
+        gsap.set(introHeader, { opacity: 0 });
       }
 
       if (outroHeader) {
@@ -326,33 +330,39 @@ export default function SpotlightAnimation() {
           gsap.set(coverImg, {
             z: coverZValue,
             scale: coverScaleValue,
-            x: 0,
+            x: -15,
             y: 0,
           });
 
           if (introHeaderWords && introHeaderWords.length > 0) {
-            if (progress >= 0.6 && progress <= 0.75) {
-              const introFadeProgress = (progress - 0.6) / 0.15;
+            // Fade in early with slower, longer animation, then abruptly disappear earlier
+            if (progress >= 0.02 && progress <= 0.25) {
+              const fadeProgress = (progress - 0.02) / 0.33;
               const totalWords = introHeaderWords.length;
 
               introHeaderWords.forEach((word, index) => {
                 const wordFadeProgress = index / totalWords;
-                const fadeRange = 0.1;
+                const wordDelay = wordFadeProgress * 0.33; // Slower word reveals
 
-                if (introFadeProgress >= wordFadeProgress + fadeRange) {
-                  gsap.set(word, { opacity: 0 });
-                } else if (introFadeProgress <= wordFadeProgress) {
-                  gsap.set(word, { opacity: 1 });
-                } else {
-                  const wordOpacity =
-                    1 - (introFadeProgress - wordFadeProgress) / fadeRange;
+                if (fadeProgress >= wordDelay) {
+                  const wordOpacity = Math.min(1, (fadeProgress - wordDelay) / 0.17);
                   gsap.set(word, { opacity: wordOpacity });
+                } else {
+                  gsap.set(word, { opacity: 0 });
                 }
               });
-            } else if (progress < 0.6) {
+              gsap.set(introHeader, { opacity: 1 });
+            } else if (progress > 0.25 && progress < 0.6) {
+              // Stay visible while images animate
               gsap.set(introHeaderWords, { opacity: 1 });
-            } else if (progress > 0.75) {
+              gsap.set(introHeader, { opacity: 1 });
+            } else if (progress >= 0.6) {
+              // Abruptly disappear - shortened gap to next animation
               gsap.set(introHeaderWords, { opacity: 0 });
+              gsap.set(introHeader, { opacity: 0 });
+            } else if (progress < 0.02) {
+              gsap.set(introHeaderWords, { opacity: 0 });
+              gsap.set(introHeader, { opacity: 0 });
             }
           }
 
@@ -396,6 +406,7 @@ export default function SpotlightAnimation() {
               filter: "saturate(100%) brightness(100%)",
             });
           }
+
         },
       });
 
@@ -486,8 +497,8 @@ export default function SpotlightAnimation() {
               </div>
               <div className="nav-links">
                 {/* <a href="/team-perks">Team Perks</a> */}
-                <a href="/challenge">Challenge</a>
-                <a href="#about-us">About Us</a>
+                <a href="/challenge">Long Laster Challenge</a>
+                {/* <a href="#about-us">About Us</a> */}
               </div>
               <a href="/intake" className="nav-cta" onClick={handleApplyClick}>APPLY NOW</a>
             </>
@@ -525,8 +536,8 @@ export default function SpotlightAnimation() {
                   <Image src="/pokerpal-logomark.svg" alt="Poker Pal" width={32} height={32} />
                 </div>
                         {/* <a href="/team-perks" onClick={() => setIsMobileMenuOpen(false)}>Team Perks</a> */}
-                        <a href="/challenge" onClick={() => setIsMobileMenuOpen(false)}>Challenge</a>
-                        <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+                        <a href="/challenge" onClick={() => setIsMobileMenuOpen(false)}>Long Laster Challenge</a>
+                        {/* <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a> */}
                 <a href="/intake" className="mobile-apply-btn" onClick={(e) => { setIsMobileMenuOpen(false); handleApplyClick(e); }}>
                   APPLY NOW
                 </a>
@@ -566,9 +577,12 @@ export default function SpotlightAnimation() {
       </section>
       <section className="outro">
         <div className="outro-content ">
-          <h1>BECOME<br/>TOMORROW&apos;S<br/>CHAMPION</h1>
+          <div className="champion-section">
+            <h1>BECOME<br/>TOMORROW&apos;S<br/>CHAMPION</h1>
+            <a href="/intake" className="hero-cta outro-cta" onClick={handleApplyClick}>APPLY NOW</a>
+          </div>
           
-          <div className="footer-hero">
+          {/* <div className="footer-hero">
             <div className="footer-background">
               <Image src="/cubes-footer.png" alt="" fill sizes="100vw" />
             </div>
@@ -576,7 +590,7 @@ export default function SpotlightAnimation() {
               <Image src="/pokerpal-logomark.svg" alt="Poker Pal Logo" width={120} height={118} />
               <p>Change the game</p>
             </div>
-          </div>
+          </div> */}
 
           <div className="subscription-section">
             <div className="subscription-card">
@@ -602,29 +616,29 @@ export default function SpotlightAnimation() {
 
           <nav className="footer-nav">
             {/* <a href="/team-perks">Team Perks</a> */}
-            <a href="/challenge">Challenge</a>
-            <a href="#about-us">About Us</a>
+            <a href="/challenge">Long Laster Challenge</a>
+            {/* <a href="#about-us">About Us</a> */}
             <a href="/intake" onClick={handleApplyClick}>Apply now</a>
           </nav>
 
           <div className="social-links">
-            <a href="#" aria-label="Twitter">
+            <a href="https://twitter.com/PokerPalAI" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <Image src="/Twitter.svg" alt="Twitter" width={24} height={24} />
             </a>
-            <a href="#" aria-label="Telegram">
+            {/* <a href="#" aria-label="Telegram">
               <Image src="/Telegram.svg" alt="Telegram" width={24} height={24} />
             </a>
             <a href="#" aria-label="YouTube">
               <Image src="/YouTube.svg" alt="YouTube" width={24} height={24} />
-            </a>
-            <a href="#" aria-label="Instagram">
+            </a> */}
+            <a href="https://instagram.com/pokerpal.live" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <Image src="/Instagram.svg" alt="Instagram" width={24} height={24} />
             </a>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <span>PokerPal.ai</span>
+          <span>PokerPal.live</span>
         </div>
       </section>
     </div>

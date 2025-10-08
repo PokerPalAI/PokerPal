@@ -13,8 +13,8 @@ export default function TeamPerks() {
           </Link>
           <div className="nav-links">
             <Link href="/team-perks" className="nav-link active">Team Perks</Link>
-            <Link href="/challenge" className="nav-link">Challenge</Link>
-            <Link href="#about-us" className="nav-link">About Us</Link>
+            <Link href="/challenge" className="nav-link">Long Laster Challenge</Link>
+            {/* <Link href="#about-us" className="nav-link">About Us</Link> */}
           </div>
           <Link href="/intake" className="nav-cta">APPLY NOW</Link>
         </div>
@@ -138,12 +138,12 @@ export default function TeamPerks() {
         <div className="footer-content">
           <div className="footer-logo">
             <Image src="/pokerpal-logomark.svg" alt="Poker Pal" width={32} height={32} />
-            <span>pokerpal.ai</span>
+            <span>pokerpal.live</span>
           </div>
           <div className="footer-links">
             <Link href="/">Home</Link>
             <Link href="/team-perks">Team Perks</Link>
-            <Link href="#about-us">About Us</Link>
+            {/* <Link href="#about-us">About Us</Link> */}
           </div>
         </div>
       </footer>

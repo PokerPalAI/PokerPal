@@ -58,8 +58,8 @@ export default function Navigation({ onApplyClick, isChallengePage = false }: Na
         
         <div className="nav-links">
           {/* <Link href="/team-perks">Team Perks</Link> */}
-          <Link href="/challenge">Challenge</Link>
-          <a href="#about-us">About Us</a>
+          <Link href="/challenge">Long Laster Challenge</Link>
+          {/* <a href="#about-us">About Us</a> */}
         </div>
         
         <Link href="/intake" className="nav-cta" onClick={handleApplyClick}>APPLY NOW</Link>
@@ -83,8 +83,8 @@ export default function Navigation({ onApplyClick, isChallengePage = false }: Na
                 <Image src="/pokerpal-logomark.svg" alt="Poker Pal" width={32} height={32} />
               </div>
               {/* <Link href="/team-perks" onClick={() => setIsMobileMenuOpen(false)}>Team Perks</Link> */}
-              <Link href="/challenge" onClick={() => setIsMobileMenuOpen(false)}>Challenge</Link>
-              <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+              <Link href="/challenge" onClick={() => setIsMobileMenuOpen(false)}>Long Laster Challenge</Link>
+              {/* <a href="#about-us" onClick={() => setIsMobileMenuOpen(false)}>About Us</a> */}
               <Link href="/intake" className="mobile-apply-btn" onClick={(e) => { setIsMobileMenuOpen(false); handleApplyClick(e); }}>
                 APPLY NOW
               </Link>

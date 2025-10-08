@@ -154,11 +154,11 @@ export default function Challenge() {
             <>
               <div className="flex gap-8 justify-self-center">
                 <Link href="/challenge" className="text-[#121212] underline underline-offset-[3px] font-medium text-base hover:opacity-70 transition-opacity duration-300">
-                  Challenge
+                  Long Laster Challenge
                 </Link>
-                <a href="#about-us" className="text-[#121212] no-underline font-medium text-base hover:opacity-70 transition-opacity duration-300">
+                {/* <a href="#about-us" className="text-[#121212] no-underline font-medium text-base hover:opacity-70 transition-opacity duration-300">
                   About Us
-                </a>
+                </a> */}
               </div>
               
               <Link 
@@ -190,11 +190,11 @@ export default function Challenge() {
                 <Image src="/pokerpal-logomark.svg" alt="Poker Pal" width={32} height={32} />
               </div>
               <Link href="/challenge" className="text-lg font-medium text-[#121212] no-underline hover:opacity-70 transition-opacity duration-300" onClick={() => setIsMobileMenuOpen(false)}>
-                Challenge
+                Long Laster Challenge
               </Link>
-              <a href="#about-us" className="text-lg font-medium text-[#121212] no-underline hover:opacity-70 transition-opacity duration-300" onClick={() => setIsMobileMenuOpen(false)}>
+              {/* <a href="#about-us" className="text-lg font-medium text-[#121212] no-underline hover:opacity-70 transition-opacity duration-300" onClick={() => setIsMobileMenuOpen(false)}>
                 About Us
-              </a>
+              </a> */}
               <Link href="/intake" className="bg-[#121212] text-white border-none px-8 py-4 rounded-[50px] font-semibold text-base cursor-pointer hover:bg-gray-700 transition-colors duration-300 tracking-[0.5px] whitespace-nowrap no-underline" onClick={() => setIsMobileMenuOpen(false)}>
                 APPLY NOW
               </Link>
@@ -240,7 +240,7 @@ export default function Challenge() {
           </h2>
           
           {/* First Event */}
-          <div className="mb-8 md:mb-10">
+          {/* <div className="mb-8 md:mb-10">
             <div className="flex flex-row justify-between items-center mb-6 md:mb-10 gap-3 md:gap-4">
               <div className="border border-[#b9b9b9] py-2 md:py-3 rounded-full h-[40px] md:h-[52px] flex items-center justify-center w-fit">
                 <p className="font-semibold text-xs md:text-base text-black text-center tracking-[-0.12px] md:tracking-[-0.16px] uppercase px-3 md:px-8">
@@ -267,7 +267,7 @@ export default function Challenge() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Divider */}
           <div className="h-px bg-[#b9b9b9] my-8 md:my-10 w-full"></div>
@@ -408,7 +408,7 @@ export default function Challenge() {
       {/* Footer */}
       <footer className="bg-[#3f88c5] h-[52px] flex items-center justify-center">
         <span className="text-base font-normal text-white tracking-[-0.16px] leading-[1.45]">
-          PokerPal.ai
+          PokerPal.live
         </span>
       </footer>
     </div>

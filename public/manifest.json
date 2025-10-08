@@ -1,0 +1,44 @@
+{
+  "name": "PokerPal - For Poker Athletes",
+  "short_name": "PokerPal",
+  "description": "Join the world's fire community built for poker athletes. Where preparation, mindset, and performance matter as much as the cards.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3F88C5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/16.svg",
+      "sizes": "16x16",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/32.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/64.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/128.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+  ],
+  "categories": ["sports", "games", "entertainment"],
+  "lang": "en-US"
+}
