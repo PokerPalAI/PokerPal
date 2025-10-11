@@ -52,11 +52,11 @@ export const metadata: Metadata = {
     description: 'PokerPal. For Poker Athletes. Where preparation, mindset, and performance matter as much as the cards.',
     images: [
       {
-        url: '/hero-logo-text.svg',
+        url: '/thumbnail.png',
         width: 1200,
         height: 630,
         alt: 'PokerPal - Train Like An Athlete',
-        type: 'image/svg+xml',
+        type: 'image/png',
       },
     ],
   },
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PokerPal. For Poker Athletes.',
     description: 'PokerPal. For Poker Athletes. Where preparation, mindset, and performance matter as much as the cards.',
-    images: ['/hero-logo-text.svg'],
+    images: ['/thumbnail.png'],
     creator: '@pokerpal',
     site: '@pokerpal',
   },
