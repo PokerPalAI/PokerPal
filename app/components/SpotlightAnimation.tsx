@@ -217,15 +217,9 @@ export default function SpotlightAnimation() {
       const screenHeight = window.innerHeight;
       const isMobile = window.innerWidth < 1000;
       const isSmallMobile = window.innerWidth < 500;
-      const scatterMultiplier = isMobile ? 2.5 : 0.5;
+      const scatterMultiplier = isMobile ? 1.2 : 0.5;
 
-      console.log('📱 Device Detection:', {
-        width: screenWidth,
-        height: screenHeight,
-        isMobile,
-        isSmallMobile,
-        scatterMultiplier
-      });
+      // Device detection for mobile optimization
 
       const startPositions = Array.from(images).map(() => ({
         x: 0,
@@ -261,11 +255,7 @@ export default function SpotlightAnimation() {
         scrollDistance = viewportHeight * 6; // Shorter for larger mobile
       }
 
-      console.log('📜 ScrollTrigger Config:', {
-        viewportHeight,
-        scrollDistance: Math.round(scrollDistance),
-        deviceType: isSmallMobile ? 'Small Mobile' : isMobile ? 'Mobile' : 'Desktop'
-      });
+      // ScrollTrigger configuration optimized for mobile
 
       spotlightScrollTrigger = ScrollTrigger.create({
         trigger: ".spotlight",
@@ -273,35 +263,18 @@ export default function SpotlightAnimation() {
         end: `+=${scrollDistance}px`,
         pin: true,
         pinSpacing: true,
-        scrub: 1,
+        scrub: isMobile ? 0.3 : 1,
         onToggle: (self) => {
-          console.log(`🔄 ScrollTrigger ${self.isActive ? 'ACTIVE' : 'INACTIVE'}:`, {
-            progress: self.progress.toFixed(2),
-            direction: self.direction,
-            start: self.start,
-            end: self.end,
-            scrollY: Math.round(window.scrollY)
-          });
+          // ScrollTrigger state change - minimal logging for performance
         },
         onUpdate: (self) => {
           const progress = self.progress;
-          
-          // Log key animation milestones
-          if (progress === 0) {
-            console.log('🎬 Animation: Started');
-          } else if (progress >= 0.7 && progress < 0.72) {
-            console.log('🎬 Animation: Cover appearing', progress.toFixed(2));
-          } else if (progress >= 0.5 && progress < 0.52) {
-            console.log('🎬 Animation: Midpoint', progress.toFixed(2));
-          } else if (progress === 1) {
-            console.log('🎬 Animation: Complete');
-          }
 
           images.forEach((img, index) => {
             const staggerDelay = index * 0.03;
-            const scaleMultiplier = isMobile ? 4 : 2;
+            const scaleMultiplier = isMobile ? 2.5 : 2;
 
-            const imageProgress = Math.max(0, (progress - staggerDelay) * 4);
+            const imageProgress = Math.max(0, (progress - staggerDelay) * 3);
 
             const start = startPositions[index];
             const end = endPositions[index];
@@ -323,14 +296,14 @@ export default function SpotlightAnimation() {
             });
           });
 
-          const coverProgress = Math.max(0, (progress - 0.7) * 4);
+          const coverProgress = Math.max(0, (progress - 0.7) * 3);
           const coverZValue = -1000 + 1000 * coverProgress;
-          const coverScaleValue = Math.min(1, coverProgress * 2);
+          const coverScaleValue = Math.min(1, coverProgress * 1.5);
 
           gsap.set(coverImg, {
             z: coverZValue,
             scale: coverScaleValue,
-            x: -15,
+            x: 0,
             y: 0,
           });
 
@@ -410,14 +383,7 @@ export default function SpotlightAnimation() {
         },
       });
 
-      console.log('✅ ScrollTrigger Ready:', {
-        trigger: spotlightScrollTrigger.trigger,
-        start: spotlightScrollTrigger.start,
-        end: spotlightScrollTrigger.end,
-        isActive: spotlightScrollTrigger.isActive,
-        progress: spotlightScrollTrigger.progress,
-        pinnedDistance: scrollDistance
-      });
+      // ScrollTrigger initialized successfully
     };
 
     initHeroAnimation();
@@ -429,43 +395,20 @@ export default function SpotlightAnimation() {
     
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const isVisible = entry.isIntersecting;
-        const sectionName = entry.target === heroSection ? 'HERO' : 'SPOTLIGHT';
-        
-        if (isVisible) {
-          console.log(`👁️ ${sectionName} Section: ENTERED (${entry.intersectionRatio.toFixed(2)})`);
-        } else {
-          console.log(`👁️ ${sectionName} Section: EXITED`);
-        }
+        // Track section visibility for debugging if needed
       });
     }, { threshold: [0, 0.1, 0.5, 0.9, 1] });
     
     if (heroSection) sectionObserver.observe(heroSection);
     if (spotlightSection) sectionObserver.observe(spotlightSection);
 
-    // Track scroll boundaries
-    let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-      const scrollDelta = currentScrollY - lastScrollY;
-      
-      // Only log significant scroll changes (not tiny movements)
-      if (Math.abs(scrollDelta) > 10) {
-        console.log('📏 Scroll Position:', {
-          scrollY: Math.round(currentScrollY),
-          delta: Math.round(scrollDelta),
-          scrollDirection: scrollDelta > 0 ? 'DOWN' : 'UP'
-        });
-        lastScrollY = currentScrollY;
-      }
-    }, { passive: true });
+    // Scroll tracking removed for performance - ScrollTrigger handles this efficiently
     
     // Debounced resize handler to prevent constant recreation
     let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        console.log('🔄 Resize detected - refreshing ScrollTrigger');
         ScrollTrigger.refresh();
       }, 150);
     };
