@@ -123,7 +123,7 @@ export default function Challenge() {
     initPageAnimations();
   }, []);
   return (
-    <div className="bg-white relative min-h-screen font-['Montserrat',sans-serif] overflow-x-hidden">
+    <div className="bg-white relative min-h-screen font-[Futura,-apple-system,BlinkMacSystemFont,'Segoe_UI','Helvetica_Neue',Arial,sans-serif] overflow-x-hidden">
       {/* Navigation */}
       <nav ref={navRef} className="relative md:fixed md:top-0 md:left-0 w-full z-50 bg-white md:bg-white/95 md:backdrop-blur-[10px] px-4 py-8 md:px-16 opacity-0">
         <div className={`${isMobile ? 'flex justify-between items-center' : 'grid grid-cols-3 items-center'}`}>
@@ -207,7 +207,7 @@ export default function Challenge() {
       <section ref={heroRef} className="relative overflow-hidden flex items-center min-h-[calc(100vh-160px)] md:min-h-[calc(100vh-240px)] mt-0 md:mt-[120px]">
         <div className="hero-background absolute inset-0 z-0 opacity-0">
           <Image 
-            src="/hero-image.png" 
+            src="/hero-image-challenge.png" 
             alt="Hero Background" 
             fill
             className="object-cover"
@@ -217,15 +217,15 @@ export default function Challenge() {
           />
         </div>
         <div className="absolute bottom-6 left-6 md:bottom-[42px] md:left-[42px] z-10 flex flex-col gap-4 md:gap-6 max-w-[calc(100vw-48px)] md:max-w-[725px]">
-          <h1 className="hero-title text-[48px] md:text-[92px] font-bold leading-[1.1] md:leading-[103px] text-black tracking-[-1.5px] md:tracking-[-2.575px] uppercase opacity-0">
+          <h1 className="hero-title text-[48px] md:text-[92px] font-bold leading-[41px] md:leading-[82px] text-white tracking-[-3.5px] md:tracking-[-8px] uppercase opacity-0">
             OUR MEMBERS<br />LAST LONGER
           </h1>
-          <p className="hero-subtext text-[18px] md:text-[28px] font-medium text-black tracking-[-0.18px] md:tracking-[-0.28px] leading-[1.2] md:leading-[1.02] opacity-0">
+          <p className="hero-subtext text-[18px] md:text-[28px] font-medium text-white tracking-[-0.18px] md:tracking-[-0.28px] leading-[1.2] md:leading-[1.02] opacity-0">
             Founding Members Are Built to Endure.
           </p>
           <Link 
             href="/intake" 
-            className="hero-button bg-black text-white border-none px-6 py-3 rounded-[65px] font-semibold text-sm md:text-base no-underline cursor-pointer transition-colors duration-300 inline-flex items-center justify-center tracking-[-0.16px] uppercase h-[48px] md:h-[52px] w-full md:w-40 hover:bg-gray-700 opacity-0"
+            className="hero-button bg-white text-black border-none px-6 py-3 rounded-[65px] font-semibold text-sm md:text-base no-underline cursor-pointer transition-colors duration-300 inline-flex items-center justify-center tracking-[-0.16px] uppercase h-[48px] md:h-[52px] w-full md:w-40 hover:bg-gray-300 opacity-0"
           >
             APPLY NOW
           </Link>
@@ -235,7 +235,7 @@ export default function Challenge() {
       {/* Events Section */}
       <section ref={eventsRef} className="pt-16 md:pt-[100px] pb-16 bg-white">
         <div className="max-w-[1288px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="events-title text-[32px] md:text-[62px] font-bold text-black mb-8 md:mb-16 tracking-[-0.32px] md:tracking-[-0.62px] uppercase leading-[0.9] opacity-0">
+          <h2 className="events-title text-[32px] md:text-[62px] font-bold text-black mb-8 md:mb-16 tracking-[-2px] md:tracking-[-4px] uppercase leading-[28px] md:leading-[55px] opacity-0">
             ELIGIBLE UPCOMING EVENTS
           </h2>
           
@@ -288,7 +288,7 @@ export default function Challenge() {
             </div>
             
             <div className="flex flex-col gap-4 md:gap-6 uppercase">
-              <h3 className="text-[24px] md:text-[32px] font-semibold text-black tracking-[-0.24px] md:tracking-[-0.32px] leading-[1.1] md:leading-[1.02]">
+              <h3 className="text-[24px] md:text-[32px] font-semibold text-black tracking-[-1px] md:tracking-[-1.5px] leading-[22px] md:leading-[1.02]">
                 WPT WORLD CHAMPIONSHIP
               </h3>
               <div className="text-[18px] md:text-[24px] text-black tracking-[-0.18px] md:tracking-[-0.24px]">
@@ -331,7 +331,7 @@ export default function Challenge() {
         <div className="max-w-[1288px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start mb-8 md:mb-10">
             <div className="flex-1 flex flex-col gap-4 md:gap-6">
-              <h2 className="challenge-title text-[32px] md:text-[62px] font-bold text-black tracking-[-0.32px] md:tracking-[-0.62px] uppercase leading-[0.9] m-0 opacity-0">
+              <h2 className="challenge-title text-[32px] md:text-[62px] font-bold text-black tracking-[-2px] md:tracking-[-4px] uppercase leading-[28px] md:leading-[55px] m-0 opacity-0">
                 LAST LONGER CHALLENGE
               </h2>
               <p className="text-base md:text-lg font-medium text-black tracking-[-0.16px] md:tracking-[-0.18px] leading-[1.5] md:leading-[1.44] m-0">
@@ -346,48 +346,48 @@ export default function Challenge() {
             
             <div className="flex-1 flex flex-col gap-4 md:gap-6">
               <div className="flex flex-col gap-3 text-black w-full">
-                <h3 className="text-[18px] md:text-[22px] font-semibold tracking-[-0.18px] md:tracking-[-0.22px] uppercase leading-[1.3] w-full">
+                <h3 className="text-[18px] md:text-[22px] font-semibold tracking-[-0.5px] md:tracking-[-1.5px] uppercase leading-[18px] md:leading-[1.3] w-full">
                   ENTRY REQUIREMENTS
                 </h3>
-                <ul className="block font-medium text-base md:text-lg tracking-[-0.16px] md:tracking-[-0.18px] w-full list-none p-0 m-0">
-                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                <ul className="block font-medium text-[14px] md:text-lg tracking-[-0.16px] md:tracking-[-0.18px] w-full list-none p-0 m-0">
+                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     Must be officially registered in the Main Event of the designated live tournament.
                   </li>
-                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     Must be an approved PokerPal Founding Member.
                   </li>
-                  <li className="ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                  <li className="ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     Entry is <span className="font-bold">FREE</span>
                   </li>
                 </ul>
               </div>
 
               <div className="flex flex-col gap-3 text-black w-full">
-                <h3 className="text-[18px] md:text-[22px] font-semibold tracking-[-0.18px] md:tracking-[-0.22px] uppercase leading-[1.3] w-full">
+                <h3 className="text-[18px] md:text-[22px] font-semibold tracking-[-0.5px] md:tracking-[-1.5px] uppercase leading-[18px] md:leading-[1.3] w-full">
                   HOW TO REGISTER
                 </h3>
-                <ul className="block font-medium text-base md:text-lg tracking-[-0.16px] md:tracking-[-0.18px] w-full list-none p-0 m-0">
-                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                <ul className="block font-medium text-[14px] md:text-lg tracking-[-0.16px] md:tracking-[-0.18px] w-full list-none p-0 m-0">
+                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     PokerPal will email all eligible members before event.
                   </li>
-                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     Participant must confirm through registration form.
                   </li>
-                  <li className="ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                  <li className="ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     If the event allows re-entries/rebuys, you remain eligible until your final elimination.
                   </li>
                 </ul>
               </div>
 
               <div className="flex flex-col gap-3 text-black w-full">
-                <h3 className="text-[18px] md:text-[22px] font-semibold tracking-[-0.18px] md:tracking-[-0.22px] uppercase leading-[1.3] w-full">
+                <h3 className="text-[18px] md:text-[22px] font-semibold tracking-[-0.5px] md:tracking-[-1.5px] uppercase leading-[18px] md:leading-[1.3] w-full">
                   CHALLENGE RULES
                 </h3>
-                <ul className="block font-medium text-base md:text-lg tracking-[-0.16px] md:tracking-[-0.18px] w-full list-none p-0 m-0">
-                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                <ul className="block font-medium text-[14px] md:text-lg tracking-[-0.16px] md:tracking-[-0.18px] w-full list-none p-0 m-0">
+                  <li className="mb-0 ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     Last remaining PokerPal member in the field wins.
                   </li>
-                  <li className="ml-6 md:ml-7 relative leading-[1.5] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
+                  <li className="ml-6 md:ml-7 relative leading-[1.4] md:leading-[1.42] before:content-['•'] before:absolute before:-left-6 md:before:-left-7 before:text-black before:font-bold">
                     Official tournament reporting determines finishing positions.
                   </li>
                 </ul>

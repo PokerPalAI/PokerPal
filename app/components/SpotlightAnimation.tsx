@@ -264,7 +264,7 @@ export default function SpotlightAnimation() {
         pin: true,
         pinSpacing: true,
         scrub: isMobile ? 0.3 : 1,
-        onToggle: (self) => {
+        onToggle: () => {
           // ScrollTrigger state change - minimal logging for performance
         },
         onUpdate: (self) => {
@@ -393,10 +393,8 @@ export default function SpotlightAnimation() {
     const heroSection = document.querySelector('.intro') as HTMLElement;
     const spotlightSection = document.querySelector('.spotlight') as HTMLElement;
     
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        // Track section visibility for debugging if needed
-      });
+    const sectionObserver = new IntersectionObserver(() => {
+      // Track section visibility for debugging if needed
     }, { threshold: [0, 0.1, 0.5, 0.9, 1] });
     
     if (heroSection) sectionObserver.observe(heroSection);

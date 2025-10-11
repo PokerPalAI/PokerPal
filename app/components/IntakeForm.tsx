@@ -383,7 +383,7 @@ export default function IntakeForm() {
   };
 
   return (
-    <div className="text-black bg-white h-screen w-screen overflow-hidden overflow-y-hidden relative flex flex-col items-center justify-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+    <div className="text-black bg-white h-screen w-screen overflow-hidden overflow-y-hidden relative flex flex-col items-center justify-center" style={{ fontFamily: 'Futura, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif' }}>
       {/* Particles Background */}
       <div id="particles-js" className="fixed inset-0 z-[-4]"></div>
       
@@ -472,10 +472,10 @@ export default function IntakeForm() {
             >
               <h1 
                 id="welcome-header" 
-                className="text-[3rem] md:text-[4rem] lg:text-[5rem] font-bold leading-[0.9] tracking-[-0.1rem] mb-6 text-black text-center"
+                className="text-[3rem] md:text-[4rem] lg:text-[5rem] font-bold leading-[90%] tracking-[-6px] mb-6 text-black text-center"
                 style={{ opacity: 0 }}
               >
-                PokerPal Founding Team Application
+                POKERPAL FOUNDING TEAM APPLICATION
               </h1>
               <p className="text-gray-600 text-xl md:text-2xl font-medium mb-8 md:mb-10 w-[90%] sm:w-[70%] md:w-[90%] max-w-3xl mx-auto lg:mx-0" style={{ opacity: 0 }}>
                 We&apos;re looking for poker players who embody discipline, resilience, and the athlete&apos;s mindset. As a Founding Member, you&apos;ll help shape PokerPal from the ground up while representing what it means to treat poker as a sport.

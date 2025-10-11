@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+/* Futura font will use system fonts with fallbacks */
 
 :root {
     --light: #d7dbd2;
@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: Futura, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -276,12 +276,13 @@ h1 {
     width: 494px;
     color: #121212;
     text-align: center;
-    font-feature-settings: 'dlig' on;
+    font-family: Futura, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     font-size: 90px;
     font-style: normal;
     font-weight: 700;
-    line-height: 90%;
-    letter-spacing: -0.9px;
+    line-height: 74px;
+    /* 82.222% */
+    letter-spacing: -6px;
     margin: 0;
 }
 
@@ -437,8 +438,8 @@ section {
     margin-bottom: 0;
     font-size: clamp(48px, 8vw, 110px);
     font-weight: 700;
-    line-height: 90%;
-    letter-spacing: -0.9px;
+    line-height: 91px;
+    letter-spacing: -8px;
     margin-top: 50vh;
     transform: translateY(-50%);
     max-width: 90%;
@@ -509,7 +510,7 @@ section {
     justify-content: center;
     margin-bottom: 24px;
     font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Futura, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     line-height: 33.6px;
     color: black;
 }
@@ -538,7 +539,7 @@ section {
     padding: 19px 22px;
     font-size: 14px;
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Futura, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     outline: none;
     color: #666;
 }
@@ -691,15 +692,15 @@ section {
 .spotlight-intro-header h1 {
     font-size: clamp(48px, 8vw, 90px);
     font-weight: 700;
-    line-height: 90%;
-    letter-spacing: -0.9px;
+    line-height: 76px;
+    letter-spacing: -8px;
 }
 
 .spotlight-outro-header h1 {
     font-size: clamp(48px, 8vw, 110px);
     font-weight: 700;
-    line-height: 90%;
-    letter-spacing: -0.9px;
+    line-height: 91px;
+    letter-spacing: -8px;
     color: white;
 }
 
@@ -743,7 +744,7 @@ section {
         width: 100%;
         font-size: clamp(56px, 10vw, 90px);
         padding: 0 24px;
-        line-height: 95%;
+        line-height: 48px;
         max-width: calc(100vw - 48px);
     }
 
@@ -829,6 +830,21 @@ section {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .spotlight-intro-header h1 {
+        line-height: 41px !important;
+        letter-spacing: -3.5px !important;
+    }
+
+    .spotlight-outro-header h1 {
+        line-height: 41px !important;
+        letter-spacing: -3.5px !important;
+    }
+
+    .outro h1 {
+        line-height: 41px !important;
+        letter-spacing: -3.5px !important;
     }
 }
 
@@ -934,15 +950,15 @@ section {
     .spotlight-intro-header h1 {
         font-size: clamp(60px, 12vw, 90px) !important;
         padding: 0 0.25rem;
-        letter-spacing: -1px;
-        line-height: 85%;
+        letter-spacing: -8px;
+        line-height: 48px;
     }
 
     .spotlight-outro-header h1 {
         font-size: clamp(60px, 12vw, 110px) !important;
         padding: 0 0.25rem;
-        letter-spacing: -1px;
-        line-height: 85%;
+        letter-spacing: -8px;
+        line-height: 81px;
     }
 
     .footer-hero {

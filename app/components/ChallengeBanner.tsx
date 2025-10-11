@@ -49,7 +49,7 @@ export default function ChallengeBanner() {
 
   return (
     <div 
-      className={`fixed top-0 left-0 right-0 h-12 bg-gradient-to-r from-sky-300 via-blue-600 to-blue-800 text-white z-[1000] font-['Montserrat',sans-serif] shadow-lg transition-transform duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 h-12 bg-gradient-to-r from-sky-300 via-blue-600 to-blue-800 text-white z-[1000] font-[Futura,-apple-system,BlinkMacSystemFont,'Segoe_UI','Helvetica_Neue',Arial,sans-serif] shadow-lg transition-transform duration-300 ease-in-out ${
         isClosing ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
