@@ -252,13 +252,12 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 170px);
-    min-height: calc(100dvh - 170px);
+    min-height: 100vh;
+    min-height: 100dvh;
     /* Dynamic viewport height for mobile browsers */
     text-align: center;
     gap: 12px;
-    padding: 170px 0 32px 0;
-    /* Minimum 170px from top to prevent nav overlap, 32px from bottom */
+    padding: 0;
 }
 
 .hero-logo {
@@ -762,20 +761,28 @@ section {
         }
     }
 
-    /* Mobile-specific height adjustments */
+    /* Mobile-specific height adjustments - maintain vertical centering */
     @media (max-width: 768px) and (max-height: 600px) {
         .hero-content {
-            padding: 100px 24px 24px 24px !important;
-            min-height: calc(100vh - 100px) !important;
-            min-height: calc(100dvh - 100px) !important;
+            padding: 0 24px !important;
+            min-height: 100vh !important;
+            min-height: 100dvh !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
         }
     }
 
     @media (max-width: 768px) and (max-height: 500px) {
         .hero-content {
-            padding: 100px 24px 20px 24px !important;
-            min-height: calc(100vh - 100px) !important;
-            min-height: calc(100dvh - 100px) !important;
+            padding: 0 24px !important;
+            min-height: 100vh !important;
+            min-height: 100dvh !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
         }
     }
 
@@ -796,11 +803,14 @@ section {
 
     .hero-content {
         gap: clamp(12px, 4vw, 16px);
-        padding: 120px 24px 32px 24px;
-        /* Minimum 120px from top to prevent nav overlap, 32px from bottom */
-        min-height: calc(100vh - 120px);
-        min-height: calc(100dvh - 120px);
-        /* Dynamic viewport height for mobile browsers */
+        padding: 0 24px;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     .subscription-heading {
@@ -832,11 +842,14 @@ section {
     }
 
     .hero-content {
-        padding: 170px 2rem 32px 2rem;
-        /* Minimum 170px from top to prevent nav overlap, 32px from bottom */
-        min-height: calc(100vh - 170px);
-        min-height: calc(100dvh - 170px);
-        /* Dynamic viewport height for mobile browsers */
+        padding: 0 2rem;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     .intro h1 {
@@ -857,20 +870,28 @@ section {
         }
     }
 
-    /* Tablet-specific height adjustments */
+    /* Tablet-specific height adjustments - maintain vertical centering */
     @media (max-width: 1000px) and (min-width: 769px) and (max-height: 600px) {
         .hero-content {
-            padding: 150px 2rem 24px 2rem !important;
-            min-height: calc(100vh - 150px) !important;
-            min-height: calc(100dvh - 150px) !important;
+            padding: 0 2rem !important;
+            min-height: 100vh !important;
+            min-height: 100dvh !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
         }
     }
 
     @media (max-width: 1000px) and (min-width: 769px) and (max-height: 500px) {
         .hero-content {
-            padding: 150px 2rem 20px 2rem !important;
-            min-height: calc(100vh - 150px) !important;
-            min-height: calc(100dvh - 150px) !important;
+            padding: 0 2rem !important;
+            min-height: 100vh !important;
+            min-height: 100dvh !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
         }
     }
 
